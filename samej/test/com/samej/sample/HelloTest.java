@@ -1,4 +1,4 @@
-package dump;
+package com.samej.sample;
 
 import java.io.File;
 

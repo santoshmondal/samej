@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="sample" namespace="/" extends="struts-default">
+		<action name="1">
+			<result>/sample/sample.jsp</result>
+		</action>
+		
+		<action name="sampleAction" class="com.samej.stateful.actions.SampleAction" method="sampleAction">
+			<result>/sample/sample.jsp</result>
+		</action>
+	</package>
+</struts>    
