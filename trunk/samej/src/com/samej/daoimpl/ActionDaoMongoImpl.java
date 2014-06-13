@@ -35,6 +35,8 @@ public class ActionDaoMongoImpl implements ActionDao {
 			DBObject dbobject = (DBObject) JSON.parse(json);
 			if (!dbobject.containsField(Constants.MONGO_ROW_KEY)) {
 				dbobject.put(Constants.MONGO_ROW_KEY, action.getActionId());
+
+				action.set_id(action.getActionId());
 			}
 
 			DBCollection collection = db.getCollection(Constants.MONGO_COLL_ACTIONS);
