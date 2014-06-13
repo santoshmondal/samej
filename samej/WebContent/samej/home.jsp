@@ -1,6 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-    
-Home PAGE!!
+
+<%
+	// Session Validation
+%>
+	
+<!-- Including Header -->
+<jsp:include page='/samej/template/header.jsp'></jsp:include>
+<div  id="main-container">
+	<div class="main-container-inner">
+		<!-- Including Navigation -->
+		<jsp:include page="/samej/template/leftnav.jsp"></jsp:include>
+
+		<div class="main-content">
+			
+			<!-- Dynamic Content Goes here-->
+			<div class="page-content">
+				
+				<div id="id_EmbedPage">
+					Hello Home!!
+				</div>
+			</div>
+			<!-- page-content -->
+
+		</div>
+		<!-- .main-content -->
+	</div>
+	<!-- main-container-inner -->
+	
+</div><!-- main-container -->
+	
+	
+<!-- Including Footer -->
+<jsp:include page="/samej/template/footer.jsp"></jsp:include>    
