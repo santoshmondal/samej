@@ -3,7 +3,21 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<package name="sample" namespace="/" extends="struts-default">
+
+	<include file="struts-session-global.xml" />
+
+	<!-- SAMPLE SESSION Level Action -->
+	<package name="sample-session-package" namespace="/" extends="session-default">
+		<action name="2">
+			<result>/sample/sample.jsp</result>
+		</action>
+		
+		<action name="sessionAction" class="com.samej.stateful.actions.SampleAction" method="sessionAction">
+			<result>/sample/sample.jsp</result>
+		</action>
+	</package>
+	<!-- SAMPLE DEFAULT TEMPLATE -->
+	<package name="sample-default" namespace="/" extends="struts-default">
 		<action name="1">
 			<result>/sample/sample.jsp</result>
 		</action>

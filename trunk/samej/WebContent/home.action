@@ -1,0 +1,4 @@
+<!-- 
+	This file is needed as a workaround in struts2 for displaying welcome file correctly. 
+	This seems to the only way if you want to avoid redirects/forwards.
+-->

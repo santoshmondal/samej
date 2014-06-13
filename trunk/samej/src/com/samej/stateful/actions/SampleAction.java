@@ -1,23 +1,17 @@
 package com.samej.stateful.actions;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.samej.stateful.requsthandler.RequestBase;
-
-public class SampleAction extends ActionSupport {
+public class SampleAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
-	private RequestBase requestBase;
 
 	public String sampleAction() {
-		return SUCCESS;
+		result = SUCCESS;
+		return result;
 	}
 	
-	
-	public RequestBase getRequestBase() {
-		return requestBase;
-	}
-	public void setRequestBase(RequestBase requestBase) {
-		this.requestBase = requestBase;
+	public String sessionAction() {
+		result = SUCCESS;
+		return result;
 	}
 	
 }
