@@ -1,0 +1,61 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- POST LOGIN -->	
+	<package name="postlogin-default" namespace="/" extends="session-default">
+		<action name="home">
+			<result>/samej/home.jsp</result>
+		</action>
+		
+		<action name="home_temp">
+			<result>/samej/global/home_temp.jsp</result>
+		</action>
+	</package>
+
+	<!-- Session less package -->
+	<package name="sassionless-default" namespace="/" extends="struts-default">
+		<action name="index">
+			<result>index.jsp</result>
+		</action>
+		<action name="login" class="com.samej.stateful.actions.AuthAction" method="login">
+			<result type='chain'>home_temp</result>
+			<result name='login'>index.jsp</result>
+		</action>
+		<action name="logout" class="com.samej.stateful.actions.AuthAction" method="logout">
+			<result name="success" type="chain">index</result>
+		</action>
+	</package>
+	
+
+	<!-- Session interceptor -->
+	<package name="session-default" extends="json-default">
+		<interceptors>
+			<interceptor name="sessionintercept" class="com.samej.stateful.interceptors.SessionInterceptor" />
+			<interceptor-stack name="sessionStack">
+				<interceptor-ref name="sessionintercept" />
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- Making User define Interceptor as default -->
+		<default-interceptor-ref name="sessionStack" />
+
+		<!-- Gloabal mapping -->
+		<global-results>
+			<result name="login" type="chain">index</result>
+			<result name="error">/samej/global/messages.jsp</result>
+			<result name="unhandledException">/samej/global/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="unhandledException" />
+		</global-exception-mappings>
+	</package>
+	
+</struts>    
