@@ -21,7 +21,7 @@
 			<result>index.jsp</result>
 		</action>
 		<action name="login" class="com.samej.stateful.actions.AuthAction" method="login">
-			<result type='chain'>home_temp</result>
+			<result type='chain'>home</result>
 			<result name='login'>index.jsp</result>
 		</action>
 		<action name="logout" class="com.samej.stateful.actions.AuthAction" method="logout">

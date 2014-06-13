@@ -3,4 +3,4 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
     
-Home 
+ERROR.jsp 
