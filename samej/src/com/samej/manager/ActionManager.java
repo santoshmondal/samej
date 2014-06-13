@@ -26,14 +26,4 @@ public class ActionManager {
 
 	public void readAction(ActionPojo action) {
 	}
-
-	public static void main(String[] args) throws Exception {
-		ActionManager actionManager = new ActionManager();
-
-		ActionPojo action = new ActionPojo();
-		action.setActionId("1234");
-		action.setActionName("Samej");
-
-		actionManager.createAction(action);
-	}
 }
