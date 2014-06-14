@@ -4,6 +4,11 @@
 	MAP::GRAPH::AUDIO::VIDEO::FRAME
 	Editor.
 	
+
 	
-Back
-Bootstrap	
+Template
+SuperAdmin
+Createuser, Role, Operation(Action)
+Base64
+How to read all action name. 
+Struts jsp using constants.
