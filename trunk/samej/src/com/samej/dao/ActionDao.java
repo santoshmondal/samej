@@ -7,11 +7,11 @@ import com.samej.pojo.ActionPojo;
 public interface ActionDao {
 	public void createAction(ActionPojo action) throws Exception;
 
-	public void updateAction(ActionPojo action);
+	public void updateAction(ActionPojo action) throws Exception;
 
-	public void deleteAction(ActionPojo action);
+	public void deleteAction(ActionPojo action) throws Exception;
 
-	public Set<ActionPojo> readAllActions();
+	public Set<ActionPojo> readAllActions() throws Exception;
 
-	public ActionPojo readAction(ActionPojo action);
+	public Set<ActionPojo> readAction(ActionPojo action) throws Exception;
 }

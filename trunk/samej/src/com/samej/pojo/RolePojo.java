@@ -1,9 +1,8 @@
 package com.samej.pojo;
 
-import java.io.Serializable;
 import java.util.Set;
 
-public class RolePojo implements Serializable {
+public class RolePojo extends BasePojo {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,6 +42,5 @@ public class RolePojo implements Serializable {
 	public void setActions(Set<ActionPojo> actions) {
 		this.actions = actions;
 	}
-
 
 }

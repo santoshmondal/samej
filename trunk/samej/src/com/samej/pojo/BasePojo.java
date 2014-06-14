@@ -8,6 +8,8 @@ public class BasePojo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String _id;
+	private boolean isDeleted;
+	private boolean isVisible;
 	private Date ctime;
 	private Date utime;
 
@@ -33,6 +35,22 @@ public class BasePojo implements Serializable {
 
 	public void set_id(String _id) {
 		this._id = _id;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public boolean isVisible() {
+		return isVisible;
+	}
+
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible;
 	}
 
 }

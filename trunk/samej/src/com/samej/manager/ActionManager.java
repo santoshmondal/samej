@@ -19,20 +19,20 @@ public class ActionManager {
 		aRef.createAction(action);
 	}
 
-	public void updateAction(ActionPojo action) {
+	public void updateAction(ActionPojo action) throws Exception {
 		aRef.updateAction(action);
 	}
 
-	public void deleteAction(ActionPojo action) {
+	public void deleteAction(ActionPojo action) throws Exception {
 		aRef.deleteAction(action);
 	}
 
-	public Set<ActionPojo> readAllActions() {
+	public Set<ActionPojo> readAllActions() throws Exception {
 		return aRef.readAllActions();
 	}
 
-	public void readAction(ActionPojo action) {
-		aRef.readAction(action);
+	public Set<ActionPojo> readAction(ActionPojo action) throws Exception {
+		return aRef.readAction(action);
 	}
 
 	public static void main(String[] args) {
