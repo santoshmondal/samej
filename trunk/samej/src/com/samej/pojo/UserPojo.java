@@ -12,6 +12,7 @@ public class UserPojo extends BasePojo {
 	private String mobile;
 
 	private Set<RolePojo> roles;
+	private Set<String> roleSetRef;
 
 	public String getUsername() {
 		return username;
@@ -53,4 +54,11 @@ public class UserPojo extends BasePojo {
 		this.roles = roles;
 	}
 
+	public Set<String> getRoleSetRef() {
+		return roleSetRef;
+	}
+
+	public void setRoleSetRef(Set<String> roleSetRef) {
+		this.roleSetRef = roleSetRef;
+	}
 }

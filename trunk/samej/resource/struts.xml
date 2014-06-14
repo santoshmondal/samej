@@ -5,6 +5,13 @@
 <struts>
 
 	<include file="struts-session-global.xml" />
+	
+	<package name="superadminpackage" namespace="/" extends="json-default">
+		<action name="superAdmin" method="superAdmin" class="com.samej.stateful.actions.SuperAdminAction">
+			<result type='json' />
+		</action>
+	</package>
+	
 
 	<!-- SAMPLE SESSION Level Action -->
 	<package name="sample-session-package" namespace="/" extends="session-default">

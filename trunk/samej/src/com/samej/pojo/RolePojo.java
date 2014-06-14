@@ -10,6 +10,7 @@ public class RolePojo extends BasePojo {
 	private String roleName;
 	private int rolePriority;
 	private Set<ActionPojo> actions;
+	private Set<String> actionSetRef;
 
 	public String getRoleId() {
 		return roleId;
@@ -41,6 +42,14 @@ public class RolePojo extends BasePojo {
 
 	public void setActions(Set<ActionPojo> actions) {
 		this.actions = actions;
+	}
+
+	public Set<String> getActionSetRef() {
+		return actionSetRef;
+	}
+
+	public void setActionSetRef(Set<String> actionSetRef) {
+		this.actionSetRef = actionSetRef;
 	}
 
 }
