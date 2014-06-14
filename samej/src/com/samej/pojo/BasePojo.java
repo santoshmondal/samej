@@ -10,6 +10,8 @@ public class BasePojo implements Serializable {
 	private String _id;
 	private boolean isDeleted;
 	private boolean isVisible;
+	private String displayName;
+
 	private Date ctime;
 	private Date utime;
 
@@ -51,6 +53,14 @@ public class BasePojo implements Serializable {
 
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 
 }

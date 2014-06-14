@@ -67,10 +67,8 @@ public class ActionDaoMongoImpl implements ActionDao {
 	@Override
 	public void deleteAction(ActionPojo action) throws Exception {
 		try {
-			DB db = MongoUtil.getDB();
-			DBObject query = new BasicDBObject(Constants.MONGO_ROW_KEY, action.getActionId());
-			DBCollection collection = db.getCollection(Constants.MONGO_COLL_ACTIONS);
-			collection.remove(query);
+			action.setDeleted(true);
+			updateAction(action);
 		} catch (Exception e) {
 			log.error(e);
 			throw e;
@@ -81,17 +79,11 @@ public class ActionDaoMongoImpl implements ActionDao {
 	public Set<ActionPojo> readAllActions() throws Exception {
 		try {
 			DB db = MongoUtil.getDB();
-			Set<ActionPojo> actionpojoset = new HashSet<ActionPojo>();
 
 			DBCollection collection = db.getCollection(Constants.MONGO_COLL_ACTIONS);
 			DBCursor dbcursor = collection.find();
 
-			while (dbcursor.hasNext()) {
-				DBObject dbObject = (DBObject) dbcursor.next();
-				ActionPojo actionpojo = new ActionPojo();
-				actionpojo = (ActionPojo) JsonUtil.jsonToObject(dbObject.toString(), ActionPojo.class.getName());
-				actionpojoset.add(actionpojo);
-			}
+			Set<ActionPojo> actionpojoset = readFromCursor(dbcursor);
 			return actionpojoset;
 		} catch (Exception e) {
 			log.error(e);
@@ -104,24 +96,29 @@ public class ActionDaoMongoImpl implements ActionDao {
 
 		try {
 			DB db = MongoUtil.getDB();
-			Set<ActionPojo> actionpojoset = new HashSet<ActionPojo>();
 
 			DBObject query = new BasicDBObject(Constants.MONGO_ROW_KEY, action.getActionId());
 			DBCollection collection = db.getCollection(Constants.MONGO_COLL_ACTIONS);
 
 			DBCursor dbcursor = collection.find(query);
+			Set<ActionPojo> actionpojoset = readFromCursor(dbcursor);
 
-			while (dbcursor.hasNext()) {
-				DBObject dbObject = (DBObject) dbcursor.next();
-				ActionPojo actionpojo = new ActionPojo();
-				actionpojo = (ActionPojo) JsonUtil.jsonToObject(dbObject.toString(), ActionPojo.class.getName());
-				actionpojoset.add(actionpojo);
-			}
 			return actionpojoset;
 		} catch (Exception e) {
 			log.error(e);
 			throw e;
 		}
+	}
 
+	private Set<ActionPojo> readFromCursor(DBCursor dbcursor) {
+		Set<ActionPojo> actionpojoset = new HashSet<ActionPojo>();
+		while (dbcursor.hasNext()) {
+			DBObject dbObject = (DBObject) dbcursor.next();
+			ActionPojo actionpojo = new ActionPojo();
+			actionpojo = (ActionPojo) JsonUtil.jsonToObject(dbObject.toString(), ActionPojo.class.getName());
+			actionpojoset.add(actionpojo);
+		}
+
+		return actionpojoset;
 	}
 }
