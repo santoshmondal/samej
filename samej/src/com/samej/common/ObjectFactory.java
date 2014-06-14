@@ -1,7 +1,11 @@
 package com.samej.common;
 
 import com.samej.daoimpl.ActionDaoMongoImpl;
+import com.samej.daoimpl.RoleDaoMongoImpl;
+import com.samej.daoimpl.UserDaoMongoImpl;
 import com.samej.manager.ActionManager;
+import com.samej.manager.RoleManager;
+import com.samej.manager.UserManager;
 
 public class ObjectFactory {
 
@@ -9,13 +13,13 @@ public class ObjectFactory {
 		//@formatter:off
 		// DAOs
 		ACTION_DAO_MONGO(ActionDaoMongoImpl.class.getName()),
-		ROLE_DAO_MONGO(ActionDaoMongoImpl.class.getName()),
-		USER_DAO_MONGO(ActionDaoMongoImpl.class.getName()),
+		ROLE_DAO_MONGO(RoleDaoMongoImpl.class.getName()),
+		USER_DAO_MONGO(UserDaoMongoImpl.class.getName()),
 		
 		// Services
 		ACTION_MANAGER(ActionManager.class.getName()),
-		ROLE_MANAGER(ActionManager.class.getName()),
-		USER_MANAGER(ActionManager.class.getName());
+		ROLE_MANAGER(RoleManager.class.getName()),
+		USER_MANAGER(UserManager.class.getName());
 		//@formatter:on
 
 		private final String className;
@@ -45,5 +49,4 @@ public class ObjectFactory {
 
 		return null;
 	}
-
 }
