@@ -17,6 +17,7 @@ public class Constants {
 
 	// Monog Id Check
 	public static final String MONGO_ROW_KEY = "_id";
+	public static final String MONGO_USER_PASSWORD = "password";
 
 	// MONGO OPERATORS
 	public static final String MONGO_OPERATOR_SET = "$set";
