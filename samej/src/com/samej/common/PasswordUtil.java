@@ -8,8 +8,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-import com.sun.mail.util.BASE64DecoderStream;
-import com.sun.mail.util.BASE64EncoderStream;
+import org.apache.commons.codec.binary.Base64;
 
 public class PasswordUtil {
 
@@ -39,7 +38,7 @@ public class PasswordUtil {
 		try {
 			byte[] utf8 = password.getBytes("UTF8");
 			byte[] enc = ecipher.doFinal(utf8);
-			enc = BASE64EncoderStream.encode(enc);
+			enc = Base64.encodeBase64(enc);
 			return new String(enc);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,12 +49,20 @@ public class PasswordUtil {
 	public static String decrypt(String password) {
 
 		try {
-			byte[] dec = BASE64DecoderStream.decode(password.getBytes());
+			byte[] dec = Base64.decodeBase64(password.getBytes());
 			byte[] utf8 = dcipher.doFinal(dec);
 			return new String(utf8, "UTF8");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void main(String[] args) {
+		String password = "qwerty";
+		String encrypt = PasswordUtil.encrypt(password);
+		System.out.println(encrypt);
+		System.out.println(PasswordUtil.decrypt(encrypt));
+
 	}
 }
