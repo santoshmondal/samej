@@ -35,8 +35,7 @@ public class UserManager {
 	}
 
 	public UserPojo authenticateUser(UserPojo user) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return uRef.authenticateUser(user);
 	}
 
 }
