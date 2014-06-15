@@ -4,6 +4,7 @@
 
 <struts>
 
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/> 
 	<include file="struts-session-global.xml" />
 	
 	
