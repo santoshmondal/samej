@@ -1,6 +1,7 @@
 package com.samej.daoimpl;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ import com.mongodb.util.JSON;
 import com.samej.common.Constants;
 import com.samej.common.JsonUtil;
 import com.samej.common.MongoUtil;
+import com.samej.common.PasswordUtil;
 import com.samej.dao.UserDao;
 import com.samej.pojo.RolePojo;
 import com.samej.pojo.UserPojo;
@@ -110,6 +112,10 @@ public class UserDaoMongoImpl implements UserDao {
 			DB db = MongoUtil.getDB();
 
 			DBObject query = new BasicDBObject(Constants.MONGO_ROW_KEY, user.getEmail());
+			if (user.getPassword() != null) {
+				query.put(Constants.MONGO_USER_PASSWORD, user.getPassword());
+			}
+
 			DBCollection collection = db.getCollection(Constants.MONGO_COLL_USERS);
 			DBCursor dbcursor = collection.find(query);
 
@@ -169,4 +175,22 @@ public class UserDaoMongoImpl implements UserDao {
 		}
 	}
 
+	@Override
+	public UserPojo authenticateUser(UserPojo user) throws Exception {
+		user.setPassword(PasswordUtil.encrypt(user.getPassword()));
+		try {
+			Set<UserPojo> readUser = readUser(user);
+			if (!readUser.isEmpty()) {
+				Iterator<UserPojo> iterator = readUser.iterator();
+				user = iterator.next();
+				user.setAuthSuccess(true);
+			} else {
+				user.setAuthSuccess(false);
+			}
+		} catch (Exception e) {
+			log.error(e);
+			throw e;
+		}
+		return user;
+	}
 }
