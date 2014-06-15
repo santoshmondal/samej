@@ -15,4 +15,5 @@ public interface UserDao {
 
 	public Set<UserPojo> readUser(UserPojo user) throws Exception;
 
+	public UserPojo authenticateUser(UserPojo user) throws Exception;
 }
