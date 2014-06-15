@@ -4,6 +4,14 @@
 
 <struts>
 
+	<package name="superadminpackage" namespace="/" extends="struts-default,json-default">
+		<action name="superAdmin" method="superAdmin" class="com.samej.stateful.actions.SuperAdminAction">
+			<result type='json'>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+	</package>
+
 	<!-- POST LOGIN -->	
 	<package name="postlogin-default" namespace="/" extends="session-default">
 		<action name="home">
