@@ -14,6 +14,8 @@ public class UserPojo extends BasePojo {
 	private Set<RolePojo> roles;
 	private Set<String> roleSetRef;
 
+	private boolean isAuthSuccess;
+
 	public String getUsername() {
 		return username;
 	}
@@ -61,4 +63,13 @@ public class UserPojo extends BasePojo {
 	public void setRoleSetRef(Set<String> roleSetRef) {
 		this.roleSetRef = roleSetRef;
 	}
+
+	public boolean isAuthSuccess() {
+		return isAuthSuccess;
+	}
+
+	public void setAuthSuccess(boolean isAuthSuccess) {
+		this.isAuthSuccess = isAuthSuccess;
+	}
+
 }
