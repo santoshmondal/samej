@@ -4,3 +4,7 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
     
 Index/Login Page.
+
+<s:set name="short_key" value="@com.samej.common.Constants@SESSION_KEY"></s:set>
+<s:property value="#short_key"/> <br />
+<s:property value="@com.samej.common.Constants@SESSION_KEY" />

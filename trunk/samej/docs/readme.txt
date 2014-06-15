@@ -1,3 +1,7 @@
+20140615
+	http://localhost:8090/samej/superAdmin.action?req.sampleParam=1
+
+
 20140612
 	BOOTSTRAP::
 	GRID::
