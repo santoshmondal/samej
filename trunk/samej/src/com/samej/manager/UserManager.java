@@ -8,29 +8,35 @@ import com.samej.daoimpl.UserDaoMongoImpl;
 import com.samej.pojo.UserPojo;
 
 public class UserManager {
-	UserDaoMongoImpl aRef = null;
+	UserDaoMongoImpl uRef = null;
 
 	public UserManager() {
-		aRef = (UserDaoMongoImpl) ObjectFactory.getInstance(ObjectEnum.USER_DAO_MONGO);
+		uRef = (UserDaoMongoImpl) ObjectFactory.getInstance(ObjectEnum.USER_DAO_MONGO);
 	}
 
 	public void createUser(UserPojo user) throws Exception {
-		aRef.createUser(user);
+		uRef.createUser(user);
 	}
 
 	public void updateUser(UserPojo user) throws Exception {
-		aRef.updateUser(user);
+		uRef.updateUser(user);
 	}
 
 	public void deleteUser(UserPojo user) throws Exception {
-		aRef.deleteUser(user);
+		uRef.deleteUser(user);
 	}
 
 	public Set<UserPojo> readAllUsers() throws Exception {
-		return aRef.readAllUsers();
+		return uRef.readAllUsers();
 	}
 
 	public Set<UserPojo> readUser(UserPojo user) throws Exception {
-		return aRef.readUser(user);
+		return uRef.readUser(user);
 	}
+
+	public UserPojo authenticateUser(UserPojo user) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
