@@ -73,8 +73,8 @@ public class SuperAdminAction extends BaseAction {
 
 		ActionPojo createRole = new ActionPojo();
 		createRole.setActionId("createRole");
-		createRole.setActionName("CREATE ACTION");
-		createRole.setDisplayName("CREATE ACTION");
+		createRole.setActionName("CREATE ROLE");
+		createRole.setDisplayName("CREATE ROLE");
 		createRole.setVisible(true);
 
 		ActionPojo createAction = new ActionPojo();
