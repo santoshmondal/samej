@@ -1,68 +1,72 @@
 package com.samej.common;
 
-import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
+
+import sun.misc.BASE64Encoder;
 
 public class PasswordUtil {
 
-	private static Cipher ecipher;
-	private static Cipher dcipher;
-
-	private static SecretKey key;
-
-	static {
+	public static String encrypt(String plaintext) {
+		MessageDigest md = null;
 		try {
-			key = KeyGenerator.getInstance("DES").generateKey();
-			ecipher = Cipher.getInstance("DES");
-			dcipher = Cipher.getInstance("DES");
-			ecipher.init(Cipher.ENCRYPT_MODE, key);
-			dcipher.init(Cipher.DECRYPT_MODE, key);
+			md = MessageDigest.getInstance("MD5"); // step 2 MD5
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			e.printStackTrace();
-		} catch (InvalidKeyException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
+		try {
+			md.update(plaintext.getBytes("UTF-8")); // step 3
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		byte raw[] = md.digest(); // step 4
+		String hash = new BASE64Encoder().encode(raw); // step 5
+		return hash; // step 6
 	}
 
-	public static String encrypt(String password) {
-
-		try {
-			byte[] utf8 = password.getBytes("UTF8");
-			byte[] enc = ecipher.doFinal(utf8);
-			enc = Base64.encodeBase64(enc);
-			return new String(enc);
-		} catch (Exception e) {
-			e.printStackTrace();
+	public static String md5Hex(String plaintext) {
+		if (plaintext == null) {
+			return "";
 		}
-		return null;
+
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("MD5"); // step 2 MD5
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
+		try {
+			md.update(plaintext.getBytes("UTF-8")); // step 3
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		byte raw[] = md.digest(); // step 4
+		return new String(Hex.encodeHex(raw)); // step 6
 	}
 
-	public static String decrypt(String password) {
-
-		try {
-			byte[] dec = Base64.decodeBase64(password.getBytes());
-			byte[] utf8 = dcipher.doFinal(dec);
-			return new String(utf8, "UTF8");
-		} catch (Exception e) {
-			e.printStackTrace();
+	public static String base64Encrypt(String plainText) {
+		if (plainText == null) {
+			return "";
 		}
-		return null;
+		return Base64.encodeBase64String(plainText.getBytes());
+	}
+
+	public static String md5HexEncrypt(String plainText) {
+		if (plainText != null) {
+			return "";
+		}
+		return md5Hex(plainText);
 	}
 
 	public static void main(String[] args) {
 		String password = "qwerty";
-		String encrypt = PasswordUtil.encrypt(password);
-		System.out.println(encrypt);
-		System.out.println(PasswordUtil.decrypt(encrypt));
+		System.out.println(PasswordUtil.encrypt(password));
+		System.out.println(PasswordUtil.encrypt(password));
 
 	}
 }
