@@ -31,6 +31,9 @@ public class UserDaoMongoImpl implements UserDao {
 	public void createUser(UserPojo user) throws Exception {
 		try {
 			DB db = MongoUtil.getDB();
+			if (user.getPassword() != null) {
+				user.setPassword(PasswordUtil.encrypt(user.getPassword()));
+			}
 			String json = JsonUtil.objectToJson(user);
 
 			DBObject dbobject = (DBObject) JSON.parse(json);
@@ -55,6 +58,10 @@ public class UserDaoMongoImpl implements UserDao {
 	public void updateUser(UserPojo user) throws Exception {
 		try {
 			DB db = MongoUtil.getDB();
+
+			if (user.getPassword() != null) {
+				user.setPassword(PasswordUtil.encrypt(user.getPassword()));
+			}
 
 			String json = JsonUtil.objectToJson(user);
 			DBObject dbobject = (DBObject) JSON.parse(json);
@@ -113,7 +120,7 @@ public class UserDaoMongoImpl implements UserDao {
 
 			DBObject query = new BasicDBObject(Constants.MONGO_ROW_KEY, user.getEmail());
 			if (user.getPassword() != null) {
-				query.put(Constants.MONGO_USER_PASSWORD, user.getPassword());
+				query.put(Constants.MONGO_USER_PASSWORD, PasswordUtil.encrypt(user.getPassword()));
 			}
 
 			DBCollection collection = db.getCollection(Constants.MONGO_COLL_USERS);
@@ -177,7 +184,6 @@ public class UserDaoMongoImpl implements UserDao {
 
 	@Override
 	public UserPojo authenticateUser(UserPojo user) throws Exception {
-		user.setPassword(PasswordUtil.encrypt(user.getPassword()));
 		try {
 			Set<UserPojo> readUser = readUser(user);
 			if (!readUser.isEmpty()) {
