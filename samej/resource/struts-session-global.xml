@@ -10,6 +10,12 @@
 				<param name="ignoreHierarchy">false</param>
 			</result>
 		</action>
+		
+		<action name="plainUser" method="plainUser" class="com.samej.stateful.actions.SuperAdminAction">
+			<result type='json'>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
 	</package>
 
 	<!-- POST LOGIN -->	
